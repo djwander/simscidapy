@@ -2,8 +2,7 @@
 unit tests for Map.py
 """
 import pytest
-from Map import Map
-from Curve import Curve
+from simscidapy import Curve,Map
 import numpy as np
 
 def test_init():
