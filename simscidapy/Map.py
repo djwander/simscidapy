@@ -14,7 +14,7 @@ from copy import deepcopy
 import matplotlib.transforms as mtransforms
 import pickle
 import gwyfile as gwy
-from Curve import Curve
+import simscidapy.Curve
 
 def check_argument(value,default,not_specified_value):
     """ convenience function returning value if value is not default, else not_specified_value
@@ -274,7 +274,7 @@ class Map:
                 title = f'Index: {i}, y={y}'
                 if self.y_unit is not None:
                     title += '('+self.y_unit+')'
-                c = Curve(x,self.data[:,i],
+                c = simscidapy.Curve(x,self.data[:,i],
                         x_label=self.x_label,x_unit=self.x_unit,
                         y_label=self.data_label,y_unit=self.data_unit,
                         title=title)
@@ -730,7 +730,7 @@ class Map:
         def sub_poly(c,y,y_i):
             x,y = c.get_x_y()
             poly_coefs = np.polynomial.polynomial.polyfit(x,y,degree)
-            c_poly = Curve(x,np.polynomial.polynomial.polyval(x,poly_coefs))
+            c_poly = simscidapy.Curve(x,np.polynomial.polynomial.polyval(x,poly_coefs))
             return c-c_poly
         self.apply_transformation_linewise(sub_poly,direction=direction)
         return self
@@ -1034,7 +1034,7 @@ class GwyddionMap(Map):
             file_path(string): file path to which the map will be saved"""
         GwyddionMap.save_map_to_gwy(self,file_path)
 
-class Profile(Curve):
+class Profile(simscidapy.Curve):
     """
     Profile extracted from a Map 
     """
