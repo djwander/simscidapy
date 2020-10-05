@@ -2,8 +2,8 @@
 unit tests for Curve.py
 """
 import pytest
-from Curve import Curve
-from Curve import default_csv_header_parser
+from simscidapy import Curve
+from simscidapy.Curve import default_csv_header_parser
 import numpy as np
 import os
 
